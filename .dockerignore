@@ -1,0 +1,10 @@
+node_modules
+.next
+.git
+.agent-memory
+.env*
+data
+backups
+playwright-report
+test-results
+*.tsbuildinfo

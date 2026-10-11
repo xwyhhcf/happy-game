@@ -3,6 +3,6 @@
 本项目的贡献指南、目录约定和功能边界统一维护在 [AGENTS.md](AGENTS.md)，开始工作前先阅读该文件。
 
 - 默认使用简体中文沟通和编写项目说明，代码标识符使用英文。
-- 技术方案见 [概要设计](docs/overview-design.md)：Next.js、TypeScript、CSS Modules、SQLite；尚未搭建，首次开发时锁定版本并补充真实命令。
+- 技术方案见 [概要设计](docs/overview-design.md)：Next.js、TypeScript、CSS Modules、SQLite；依赖已锁定，环境、命令与实际验证结果见 README。
 - 修改保持最小范围，完成后执行适用验证；未经明确要求，不创建分支或执行提交、推送。
 - 本地续接记录存放于 `.agent-memory/`，遵循用户提供的记忆维护规则，不纳入版本控制。

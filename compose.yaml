@@ -1,0 +1,16 @@
+services:
+  web:
+    build: .
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      DATA_DIR: /data
+      APP_ORIGIN: ${APP_ORIGIN:?请设置站点 HTTPS 地址}
+      ADMIN_USERNAME: ${ADMIN_USERNAME:?请设置管理账号}
+      ADMIN_PASSWORD_HASH: ${ADMIN_PASSWORD_HASH:?请设置密码哈希}
+      COOKIE_SECURE: "true"
+    volumes:
+      - collection-data:/data
+    restart: unless-stopped
+volumes:
+  collection-data:

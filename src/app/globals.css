@@ -1,0 +1,124 @@
+:root {
+  --paper: #f7f6f1;
+  --surface: #fffefa;
+  --ink: #23372e;
+  --muted: #68756c;
+  --green: #244e3d;
+  --green-soft: #e8eee5;
+  --line: #dedfd4;
+  --accent: #ac653d;
+  --danger: #a23b35;
+  --serif: Georgia, "Noto Serif SC", "Songti SC", STSong, serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+html {
+  background: var(--paper);
+  color: var(--ink);
+}
+body {
+  margin: 0;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Microsoft YaHei", sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button,
+input,
+textarea {
+  font: inherit;
+}
+button,
+a,
+input,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+button,
+input,
+textarea {
+  border-radius: 10px;
+}
+input,
+textarea {
+  width: 100%;
+  border: 1px solid #bcc5b9;
+  background: var(--surface);
+  padding: 12px 14px;
+  color: var(--ink);
+}
+input {
+  min-height: 48px;
+}
+textarea {
+  resize: vertical;
+}
+input[type="file"] {
+  font-size: 13px;
+  padding: 10px;
+}
+input::placeholder,
+textarea::placeholder {
+  color: #7b837b;
+}
+:focus-visible {
+  outline: 3px solid #b7884f;
+  outline-offset: 4px;
+}
+button {
+  min-height: 44px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  padding: 10px 18px;
+  color: var(--ink);
+}
+label {
+  font-weight: 600;
+}
+label small {
+  display: block;
+  font-weight: 400;
+  color: var(--muted);
+  font-size: 12px;
+  margin: 4px 0 8px;
+}
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+svg {
+  flex-shrink: 0;
+}
+::selection {
+  background: #d5e2cd;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
