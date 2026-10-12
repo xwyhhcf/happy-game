@@ -13,7 +13,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#f7f6f1",
+  themeColor: "#f5f5f7",
 };
 
 export default function RootLayout({
@@ -35,20 +35,20 @@ export default function RootLayout({
                 fill="none"
                 aria-hidden="true"
               >
-                <rect width="40" height="40" rx="11" fill="#244e3d" />
+                <rect width="40" height="40" rx="11" fill="#1d1d1f" />
                 <rect
                   x="10"
                   y="10"
                   width="20"
                   height="20"
                   rx="4"
-                  stroke="#f6f1da"
+                  stroke="#f5f5f7"
                   strokeWidth="1.3"
                   transform="rotate(-8 20 20)"
                 />
-                <circle cx="15" cy="15" r="1.8" fill="#f6f1da" />
-                <circle cx="25" cy="25" r="1.8" fill="#f6f1da" />
-                <circle cx="20" cy="20" r="1.8" fill="#f6f1da" />
+                <circle cx="15" cy="15" r="1.8" fill="#f5f5f7" />
+                <circle cx="25" cy="25" r="1.8" fill="#f5f5f7" />
+                <circle cx="20" cy="20" r="1.8" fill="#f5f5f7" />
               </svg>
               <span>
                 <strong>桌游小馆</strong>

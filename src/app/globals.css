@@ -1,30 +1,31 @@
 :root {
-  --paper: #f7f6f1;
-  --surface: #fffefa;
-  --ink: #23372e;
-  --muted: #68756c;
-  --green: #244e3d;
-  --green-soft: #e8eee5;
-  --line: #dedfd4;
-  --accent: #ac653d;
-  --danger: #a23b35;
+  --paper: #f5f5f7;
+  --surface: #ffffff;
+  --ink: #1d1d1f;
+  --muted: #6e6e73;
+  --green: #0071e3;
+  --green-soft: #e8f2ff;
+  --line: #d2d2d7;
+  --accent: #ff375f;
+  --danger: #d70015;
   --serif: Georgia, "Noto Serif SC", "Songti SC", STSong, serif;
 }
-
 * {
   box-sizing: border-box;
 }
 html {
   background: var(--paper);
   color: var(--ink);
+  scroll-behavior: smooth;
 }
 body {
   margin: 0;
   font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
-    "Microsoft YaHei", sans-serif;
+    -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+    "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 15px;
-  line-height: 1.65;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
 }
 a {
   color: inherit;
@@ -46,20 +47,21 @@ button {
 }
 button:disabled {
   cursor: wait;
-  opacity: 0.6;
+  opacity: 0.55;
 }
 button,
 input,
 textarea {
-  border-radius: 10px;
+  border-radius: 12px;
 }
 input,
 textarea {
   width: 100%;
-  border: 1px solid #bcc5b9;
+  border: 1px solid var(--line);
   background: var(--surface);
   padding: 12px 14px;
   color: var(--ink);
+  box-shadow: inset 0 1px 0 #00000004;
 }
 input {
   min-height: 48px;
@@ -73,11 +75,11 @@ input[type="file"] {
 }
 input::placeholder,
 textarea::placeholder {
-  color: #7b837b;
+  color: #86868b;
 }
 :focus-visible {
-  outline: 3px solid #b7884f;
-  outline-offset: 4px;
+  outline: 3px solid #0071e380;
+  outline-offset: 3px;
 }
 button {
   min-height: 44px;
@@ -110,9 +112,8 @@ svg {
   flex-shrink: 0;
 }
 ::selection {
-  background: #d5e2cd;
+  background: #b7d9ff;
 }
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

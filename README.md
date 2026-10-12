@@ -11,7 +11,7 @@
 
 ## 当前状态
 
-首期应用已实现并通过本地生产构建及自动化验证。采用 Next.js App Router、React、TypeScript、CSS Modules 和 SQLite，单实例运行，持久化保存资料与封面。具体版本已锁定在 `package-lock.json`。
+首期应用已实现并通过本地生产构建及自动化验证。采用 Next.js App Router、React、TypeScript、CSS Modules 和 SQLite，单实例运行，持久化保存资料与封面。首页现为 Apple-inspired 深色沉浸式横向艺术画布，封面支持左右滑动与按钮翻页；列表、详情和管理页统一使用克制的系统灰、圆角层级与蓝色强调色。具体版本已锁定在 `package-lock.json`。
 
 完整的页面、数据模型、推荐规则、接口、部署与验收方案见 [概要设计](docs/overview-design.md)。首期的“组局”仅指按人数选游，不包含活动创建、邀请或报名。
 
@@ -91,6 +91,8 @@ docker compose --env-file "/path/to/deploy.env" up --build -d
 建议每天及迁移前备份，至少保留最近 7 份并另存到独立存储。恢复时停止应用，将完整备份中的数据库和 `uploads/` 放入一个新的数据目录，修改 `DATA_DIR` 指向该目录后启动；不要在运行中覆盖数据库，也不要将旧 WAL 文件带入新目录。Docker 备份默认位于容器 `/app/backups`，需通过 `docker cp` 导出或配置独立备份挂载，不能只保留在容器内。
 
 ## 验证状态
+
+2026-10-12 完成前端艺术重设计：参考 Apple iPhone / Vision Pro 的连续叙事、留白和横向画布节奏，首页画廊改为可横向滚动的深色舞台，增加左右浏览控件；导航、筛选、列表、详情、登录、管理表单及图标统一为 Apple-like 视觉语言。真实浏览器检查确认手机 viewport 无横向溢出，画布翻页可用。
 
 2026-10-11 在 Node.js 22.22.3 / npm 10.9.8 的本机环境验证：
 

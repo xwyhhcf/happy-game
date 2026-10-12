@@ -24,6 +24,7 @@ export function Collection({
   const [error, setError] = useState("");
   const [showFilters, setShowFilters] = useState(!!query.q || !!query.players);
   const pageRef = useRef(initial.page);
+  const galleryRef = useRef<HTMLDivElement>(null);
   const currentUrl = `${path}${search.size ? `?${search}` : ""}`;
   const storageKey = `collection:${currentUrl}`;
   const filterParams = new URLSearchParams();
@@ -118,6 +119,49 @@ export function Collection({
     } catch {
       /* 存储不可用不阻断导航 */
     }
+  }
+
+  const cards = data.items.map((game, i) => (
+    <article key={game.id} className={s.card}>
+      <Link
+        className={s.cardLink}
+        href={`/games/${game.id}?from=${encodeURIComponent(currentUrl)}`}
+        onClick={rememberPosition}
+      >
+        <div className={s.art}>
+          <Cover coverKey={game.coverKey} name={game.name} eager={i < 4} />
+        </div>
+        <div className={s.listContent}>
+          <h2 className={s.cardTitle}>{game.name}</h2>
+          <div className={s.meta}>
+            <span>
+              {game.minPlayers === game.maxPlayers
+                ? game.minPlayers
+                : `${game.minPlayers}–${game.maxPlayers}`}{" "}
+              人
+            </span>
+            <span className={s.dot}>·</span>
+            <span>{game.durationMinutes} 分钟</span>
+          </div>
+          {game.match && (
+            <span className={s.badge}>
+              {game.match === "best" ? "✦ 最佳人数匹配" : "支持该人数"}
+            </span>
+          )}
+          {mode === "list" && <p className={s.summary}>{game.summary}</p>}
+        </div>
+      </Link>
+    </article>
+  ));
+
+  function scrollGallery(direction: "left" | "right") {
+    galleryRef.current?.scrollBy({
+      left:
+        direction === "right"
+          ? galleryRef.current.clientWidth * 0.82
+          : -galleryRef.current.clientWidth * 0.82,
+      behavior: "smooth",
+    });
   }
 
   return (
@@ -217,47 +261,43 @@ export function Collection({
             )}
           </div>
           {data.items.length ? (
-            <div className={mode === "list" ? s.list : s.grid}>
-              {data.items.map((game, i) => (
-                <article key={game.id} className={s.card}>
-                  <Link
-                    className={s.cardLink}
-                    href={`/games/${game.id}?from=${encodeURIComponent(currentUrl)}`}
-                    onClick={rememberPosition}
-                  >
-                    <div className={s.art}>
-                      <Cover
-                        coverKey={game.coverKey}
-                        name={game.name}
-                        eager={i < 4}
-                      />
+            <div
+              className={
+                mode === "list"
+                  ? s.list
+                  : mode === "gallery"
+                    ? s.galleryStage
+                    : s.grid
+              }
+            >
+              {mode === "gallery" ? (
+                <>
+                  <div className={s.galleryTrack} ref={galleryRef}>
+                    {cards}
+                  </div>
+                  <div className={s.galleryControls}>
+                    <span>左右滑动，慢慢发现</span>
+                    <div>
+                      <button
+                        type="button"
+                        aria-label="向左浏览"
+                        onClick={() => scrollGallery("left")}
+                      >
+                        ←
+                      </button>
+                      <button
+                        type="button"
+                        aria-label="向右浏览"
+                        onClick={() => scrollGallery("right")}
+                      >
+                        →
+                      </button>
                     </div>
-                    <div className={s.listContent}>
-                      <h2 className={s.cardTitle}>{game.name}</h2>
-                      <div className={s.meta}>
-                        <span>
-                          {game.minPlayers === game.maxPlayers
-                            ? game.minPlayers
-                            : `${game.minPlayers}–${game.maxPlayers}`}{" "}
-                          人
-                        </span>
-                        <span className={s.dot}>·</span>
-                        <span>{game.durationMinutes} 分钟</span>
-                      </div>
-                      {game.match && (
-                        <span className={s.badge}>
-                          {game.match === "best"
-                            ? "✦ 最佳人数匹配"
-                            : "支持该人数"}
-                        </span>
-                      )}
-                      {mode === "list" && (
-                        <p className={s.summary}>{game.summary}</p>
-                      )}
-                    </div>
-                  </Link>
-                </article>
-              ))}
+                  </div>
+                </>
+              ) : (
+                cards
+              )}
             </div>
           ) : (
             <div className={s.empty}>
